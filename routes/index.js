@@ -10,13 +10,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/api/v1/items', function(req, res, next) {
-  const results = db.any('SELECT * FROM items', [true])
-    .then(function(data) {
-      res.send(data)
-    })
-    .catch(function(error) {
-        console.error(error);
-    });
+  db.any('SELECT * FROM items', [true])
+  .then(function(data) {
+    res.send(data)
+  })
+  .catch(function(error) {
+    console.error(error);
+  });
 })
+
+// router.post('api/v1/items')
 
 module.exports = router;
