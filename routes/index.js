@@ -26,4 +26,16 @@ router.route('/api/v1/items')
     .catch(error => console.error(error));
   });
 
+router.route(`/api/v1/items/:id`)
+  .get((req, res) => {
+    const id = req.params.id
+
+    db.one('SELECT * FROM items WHERE id=($1)', [id])
+    .then(data => res.send(data))
+    .catch(error => console.error(error));
+  })
+  .put((req, res) => {
+
+  })
+
 module.exports = router;
