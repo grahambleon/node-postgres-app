@@ -11,15 +11,19 @@ router.get('/', (req, res) => {
 
 router.route('/api/v1/items')
   .get((req, res) => {
-    db.any('SELECT * FROM items', [true])
+    db.any('SELECT * FROM items')
     .then(data => res.send(data))
     .catch(error => console.error(error));
   })
   .post((req, res) => {
-    // const data = JSON.parse(req.body)
-    console.log(req.body);
-    // res.send(data)
-    res.send('hello')
+    db.one(
+      'INSERT INTO items(text, complete) VALUES($1, $2) RETURNING text',
+      [req.body.text, false]
+    )
+    .then(data => {
+      res.send(`Successfully added task: "${data.text}".`);
+    })
+    .catch(error => console.error(error));
   });
 
 module.exports = router;
