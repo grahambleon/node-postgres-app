@@ -16,8 +16,10 @@ router.route('/api/v1/items')
     .catch(error => console.error(error));
   })
   .post((req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-    res.send(req.body);
+    // const data = JSON.parse(req.body)
+    console.log(req.body);
+    // res.send(data)
+    res.send('hello')
   });
 
 module.exports = router;
