@@ -9,26 +9,15 @@ router.get('/', (req, res) => {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/api/v1/items', (req, res) => {
-  db.any('SELECT * FROM items', [true])
-  .then(data => res.send(data))
-  .catch(error => console.error(error));
-})
-
-router.post('api/v1/items', (req, res) => {
-  // const data = {
-  //   text: req.body.text,
-  //   complete: false
-  // }
-  // db.none(`INSERT INTO items VALUES(DEFAULT, ${data.text}, ${data.complete}`), [true])
-  //   .then(() => {
-  //     console.log('SUCCESS :D');
-  //   })
-  //   .catch(error => {
-  //     console.error(error);
-  //   });
-  console.log(req.body);
-  res.end();
-})
+router.route('/api/v1/items')
+  .get((req, res) => {
+    db.any('SELECT * FROM items', [true])
+    .then(data => res.send(data))
+    .catch(error => console.error(error));
+  })
+  .post((req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(req.body);
+  });
 
 module.exports = router;
