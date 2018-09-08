@@ -35,7 +35,13 @@ router.route(`/api/v1/items/:id`)
     .catch(error => console.error(error));
   })
   .put((req, res) => {
+    const id = req.params.id
 
+    db.one(
+      'UPDATE items SET complete($1) WHERE id=($2)',
+      [req.body.complete, id]
+    )
   })
+
 
 module.exports = router;

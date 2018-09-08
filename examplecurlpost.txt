@@ -1,1 +1,5 @@
-curl -d @data.json -H "Content-Type: application/json" -X POST "http://localhost:3000/api/v1/items"
+-post
+curl -d @post-data.json -H "Content-Type: application/json" -X POST "http://localhost:3000/api/v1/items"
+
+-put
+curl -d @put-data.json -H "Content-Type: application/json" -X PUT "http://localhost:3000/api/v1/items/1"
