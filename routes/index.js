@@ -36,11 +36,12 @@ router.route(`/api/v1/items/:id`)
   })
   .put((req, res) => {
     const id = req.params.id
-
-    db.one(
+    console.log(params);
+    db.none(
       'UPDATE items SET complete($1) WHERE id=($2)',
       [req.body.complete, id]
     )
+    .catch(error => console.error(error));
   })
 
 
