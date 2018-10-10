@@ -2,4 +2,4 @@
 curl -d @post-data.json -H "Content-Type: application/json" -X POST "http://localhost:3000/api/v1/items"
 
 -put
-curl -X PUT -d complete=true http://localhost:3000/api/v1/items/1
+curl -d complete=true -X PUT "http://localhost:3000/api/v1/items/2"
