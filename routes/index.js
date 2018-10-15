@@ -46,6 +46,9 @@ router.route(`/api/v1/items/:id`)
     })
     .catch(error => console.error(error));
   })
+  .delete((req, res) => {
+    
+  })
 
 
 module.exports = router;
