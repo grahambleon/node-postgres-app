@@ -47,7 +47,12 @@ router.route(`/api/v1/items/:id`)
     .catch(error => console.error(error));
   })
   .delete((req, res) => {
-    
+    const id = req.params.id
+
+    db.one('DELETE FROM items WHERE id =($1) RETURNING text', [id])
+    .then(data => {
+      res.send(`Task: '${data.text}' deleted successfully.`)
+    })
   })
 
 
